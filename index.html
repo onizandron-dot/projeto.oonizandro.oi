@@ -1,1 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Sites - Plataforma Completa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <h1>Sistema<span>Sites</span></h1>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="#criar" class="nav-link"><i class="fas fa-plus-circle"></i> Criar Site</a>
+                <a href="#dashboard" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="#api" class="nav-link"><i class="fas fa-server"></i> API Java</a>
+            </nav>
+        </header>
 
+        <!-- Seção Principal -->
+        <main class="main-content">
+            <section id="home" class="section active">
+                <div class="hero">
+                    <h2><i class="fas fa-rocket"></i> Plataforma Completa de Sites</h2>
+                    <p class="subtitle">Frontend + Backend Java + Banco de Dados</p>
+                    
+                    <div class="features">
+                        <div class="feature-card">
+                            <i class="fas fa-desktop"></i>
+                            <h3>Interface Web</h3>
+                            <p>HTML5, CSS3 e JavaScript</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-server"></i>
+                            <h3>Backend Java</h3>
+                            <p>API REST com servidor embutido</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-database"></i>
+                            <h3>Banco de Dados</h3>
+                            <p>Armazenamento JSON persistente</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integração Java -->
+                <div class="java-integration">
+                    <h3><i class="fab fa-java"></i> Integração com Backend Java</h3>
+                    <div class="api-controls">
+                        <button onclick="startJavaServer()" class="btn btn-success">
+                            <i class="fas fa-play"></i> Iniciar Servidor Java
+                        </button>
+                        <button onclick="testJavaAPI()" class="btn btn-info">
+                            <i class="fas fa-bolt"></i> Testar API
+                        </button>
+                        <button onclick="listSitesFromJava()" class="btn btn-primary">
+                            <i class="fas fa-list"></i> Listar Sites (Java)
+                        </button>
+                    </div>
+                    
+                    <div id="javaResponse" class="api-response">
+                        <h4>Resposta da API Java:</h4>
+                        <pre id="responseData">Aguardando ação...</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Criador de Sites -->
+            <section id="criar" class="section">
+                <h2><i class="fas fa-magic"></i> Criar Novo Site</h2>
+                
+                <div class="site-creator">
+                    <div class="form-group">
+                        <label for="siteTitle"><i class="fas fa-heading"></i> Título do Site</label>
+                        <input type="text" id="siteTitle" class="form-control" 
+                               placeholder="Digite o título do site" value="Meu Site Incrível">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="siteAuthor"><i class="fas fa-user"></i> Autor</label>
+                        <input type="text" id="siteAuthor" class="form-control" 
+                               placeholder="Seu nome" value="João Silva">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="siteCategory"><i class="fas fa-tag"></i> Categoria</label>
+                        <select id="siteCategory" class="form-control">
+                            <option value="blog">Blog</option>
+                            <option value="portfolio" selected>Portfólio</option>
+                            <option value="business">Negócios</option>
+                            <option value="personal">Pessoal</option>
+                            <option value="ecommerce">Loja Virtual</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="siteContent"><i class="fas fa-edit"></i> Conteúdo HTML</label>
+                        <textarea id="siteContent" class="form-control" rows="12">
+
+                        </textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button onclick="previewSite()" class="btn btn-warning">
+                            <i class="fas fa-eye"></i> Visualizar
+                        </button>
+                        <button onclick="saveSite()" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Salvar Localmente
+                        </button>
+                        <button onclick="sendToJava()" class="btn btn-success">
+                            <i class="fab fa-java"></i> Salvar no Java
+                        </button>
+                        <button onclick="publishSite()" class="btn btn-danger">
+                            <i class="fas fa-paper-plane"></i> Publicar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Preview -->
+                <div class="preview-container">
+                    <h3><i class="fas fa-desktop"></i> Preview do Site</h3>
+                    <iframe id="sitePreview" class="preview-frame"></iframe>
+                </div>
+            </section>
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="section">
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalSites">0</h3>
+                            <p>Sites Criados</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="javaStatus">Offline</h3>
+                            <p>Status Java</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="fileCount">0</h3>
+                            <p>Arquivos</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lista de Sites -->
+                <div class="sites-list">
+                    <h3><i class="fas fa-list"></i> Meus Sites</h3>
+                    <div id="sitesContainer" class="sites-grid">
+                        <!-- Sites serão carregados dinamicamente -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- API Java -->
+            <section id="api" class="section">
+                <h2><i class="fas fa-server"></i> API Java Backend</h2>
+                
+                <div class="api-info">
+                    <div class="info-card">
+                        <h3><i class="fas fa-plug"></i> Endpoints da API</h3>
+                        <table class="api-table">
+                            <tr>
+                                <td><code>GET /api/sites</code></td>
+                                <td>Listar todos os sites</td>
+                            </tr>
+                            <tr>
+                                <td><code>POST /api/sites</code></td>
+                                <td>Criar novo site</td>
+                            </tr>
+                            <tr>
+                                <td><code>GET /api/sites/{id}</code></td>
+                                <td>Buscar site específico</td>
+                            </tr>
+                            <tr>
+                                <td><code>PUT /api/sites/{id}</code></td>
+                                <td>Atualizar site</td>
+                            </tr>
+                            <tr>
+                                <td><code>DELETE /api/sites/{id}</code></td>
+                                <td>Excluir site</td>
+                            </tr>
+                            <tr>
+                                <td><code>GET /api/stats</code></td>
+                                <td>Estatísticas do sistema</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-cogs"></i> Controles do Servidor</h3>
+                        <div class="server-controls">
+                            <button onclick="startJavaServer()" class="btn btn-lg btn-success">
+                                <i class="fas fa-play-circle"></i> Iniciar Servidor
+                            </button>
+                            <button onclick="stopJavaServer()" class="btn btn-lg btn-danger">
+                                <i class="fas fa-stop-circle"></i> Parar Servidor
+                            </button>
+                            <button onclick="clearJavaData()" class="btn btn-lg btn-warning">
+                                <i class="fas fa-trash"></i> Limpar Dados
+                            </button>
+                        </div>
+                        
+                        <div class="server-status">
+                            <h4>Status do Servidor:</h4>
+                            <div class="status-indicator">
+                                <span class="status-dot" id="serverDot"></span>
+                                <span id="serverStatusText">Servidor Java não iniciado</span>
+                            </div>
+                            <p id="serverPort">Porta: Não configurada</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Console de Logs -->
+                <div class="console">
+                    <h3><i class="fas fa-terminal"></i> Console de Logs</h3>
+                    <div id="javaConsole" class="console-output">
+                        <div class="log-entry">Bem-vindo ao Sistema de Sites Integrado!</div>
+                        <div class="log-entry">Pronto para conectar com o backend Java.</div>
+                    </div>
+                    <button onclick="clearConsole()" class="btn btn-sm btn-secondary">
+                        <i class="fas fa-broom"></i> Limpar Console
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <p>Sistema de Sites Integrado &copy; 2024</p>
+            <p>Frontend: HTML/CSS/JS | Backend: Java | Banco de Dados: JSON</p>
+            <div class="tech-icons">
+                <i class="fab fa-html5" title="HTML5"></i>
+                <i class="fab fa-css3-alt" title="CSS3"></i>
+                <i class="fab fa-js-square" title="JavaScript"></i>
+                <i class="fab fa-java" title="Java"></i>
+                <i class="fas fa-database" title="Banco de Dados"></i>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal para detalhes do site -->
+    <div id="siteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
