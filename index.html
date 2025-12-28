@@ -6,6 +6,590 @@
     <title>Sistema de Sites - Plataforma Completa</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <style>  
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+}
+
+/* Cabeçalho */
+.header {
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo i {
+    font-size: 2rem;
+    color: #3498db;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+}
+
+.logo span {
+    color: #3498db;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link:hover, .nav-link.active {
+    background: #3498db;
+    color: white;
+}
+
+/* Conteúdo Principal */
+.main-content {
+    padding: 2rem;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+/* Criador de Sites */
+.site-creator {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+textarea.form-control {
+    font-family: 'Courier New', monospace;
+    resize: vertical;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* Botões */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-success {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-warning {
+    background: #f39c12;
+    color: white;
+}
+
+.btn-info {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-lg {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+/* Preview */
+.preview-container {
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.preview-frame {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+}
+
+/* Dashboard */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-icon {
+    background: #3498db;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-info h3 {
+    font-size: 2rem;
+    color: #2c3e50;
+}
+
+.stat-info p {
+    color: #7f8c8d;
+}
+
+/* Grid de Sites */
+.sites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.site-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.site-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.site-header {
+    background: #3498db;
+    color: white;
+    padding: 1rem;
+}
+
+.site-body {
+    padding: 1rem;
+}
+
+.site-footer {
+    background: #f8f9fa;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* API Section */
+.api-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.api-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.api-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.api-table td {
+    padding: 10px;
+}
+
+.api-table code {
+    background: #2c3e50;
+    color: #3498db;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+.server-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.server-status {
+    background: white;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e74c3c;
+}
+
+.status-dot.online {
+    background: #27ae60;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Console */
+.console {
+    background: #1e1e1e;
+    color: #00ff00;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+    font-family: 'Courier New', monospace;
+}
+
+.console-output {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #2d2d2d;
+    border-radius: 3px;
+}
+
+.log-entry {
+    padding: 5px 0;
+    border-bottom: 1px solid #444;
+    font-size: 0.9rem;
+}
+
+/* Integração Java */
+.java-integration {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.api-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.api-response {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.api-response pre {
+    background: #2c3e50;
+    color: #3498db;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* Rodapé */
+.footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.tech-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.tech-icons i {
+    transition: transform 0.3s;
+}
+
+.tech-icons i:hover {
+    transform: scale(1.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .features, .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .api-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+/* Animações */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.feature-card:nth-child(1) { animation: slideIn 0.5s ease-out; }
+.feature-card:nth-child(2) { animation: slideIn 0.5s ease-out 0.2s both; }
+.feature-card:nth-child(3) { animation: slideIn 0.5s ease-out 0.4s both; }
+ </style> 
+    
 </head>
 <body>
     <div class="container">
@@ -271,6 +855,664 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Sistema de Sites Integrado - JavaScript
+
+class SiteManager {
+    constructor() {
+        this.sites = JSON.parse(localStorage.getItem('sites')) || [];
+        this.javaServerUrl = 'http://localhost:8080';
+        this.isJavaServerRunning = false;
+        this.init();
+    }
+
+    init() {
+        // Navegação
+        this.setupNavigation();
+        
+        // Inicializar valores
+        this.updateStats();
+        this.loadSites();
+        
+        // Testar conexão Java
+        this.testJavaConnection();
+        
+        // Atualizar preview em tempo real
+        this.setupLivePreview();
+    }
+
+    setupNavigation() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Atualizar link ativo
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Mostrar seção correspondente
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                    }
+                });
+                
+                // Scroll para topo
+                window.scrollTo(0, 0);
+            });
+        });
+    }
+
+    setupLivePreview() {
+        const titleInput = document.getElementById('siteTitle');
+        const contentInput = document.getElementById('siteContent');
+        const categorySelect = document.getElementById('siteCategory');
+        
+        const updatePreview = () => {
+            const title = titleInput.value || 'Sem título';
+            const content = contentInput.value;
+            const category = categorySelect.value;
+            
+            // Atualizar elementos de preview
+            document.getElementById('previewTitle').textContent = title;
+            document.getElementById('previewCategory').textContent = category;
+            document.getElementById('previewContent').innerHTML = content;
+            
+            // Atualizar estatísticas
+            this.updateContentStats(content);
+        };
+        
+        // Event listeners para atualização em tempo real
+        titleInput.addEventListener('input', updatePreview);
+        contentInput.addEventListener('input', updatePreview);
+        categorySelect.addEventListener('change', updatePreview);
+        
+        // Atualizar inicial
+        updatePreview();
+    }
+
+    updateContentStats(content) {
+        const charCount = content.length;
+        const wordCount = content.trim().split(/\s+/).filter(w => w.length > 0).length;
+        const lineCount = content.split('\n').length;
+        
+        document.getElementById('charCount').textContent = charCount;
+        document.getElementById('wordCount').textContent = wordCount;
+        document.getElementById('lineCount').textContent = lineCount;
+    }
+
+    updateStats() {
+        document.getElementById('totalSites').textContent = this.sites.length;
+        document.getElementById('fileCount').textContent = this.sites.length;
+        
+        // Atualizar status Java
+        const statusDot = document.getElementById('serverDot');
+        const statusText = document.getElementById('serverStatusText');
+        const serverPort = document.getElementById('serverPort');
+        
+        if (this.isJavaServerRunning) {
+            statusDot.classList.add('online');
+            statusText.textContent = 'Servidor Java Online';
+            document.getElementById('javaStatus').textContent = 'Online';
+            serverPort.textContent = `Porta: 8080`;
+        } else {
+            statusDot.classList.remove('online');
+            statusText.textContent = 'Servidor Java Offline';
+            document.getElementById('javaStatus').textContent = 'Offline';
+            serverPort.textContent = `Porta: Não disponível`;
+        }
+    }
+
+    loadSites() {
+        const container = document.getElementById('sitesContainer');
+        if (this.sites.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-folder-open fa-3x"></i>
+                    <p>Nenhum site salvo ainda</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = this.sites.map((site, index) => `
+            <div class="site-card">
+                <div class="site-header">
+                    <h3>${site.title}</h3>
+                    <small>${site.category} • ${new Date(site.createdAt).toLocaleDateString()}</small>
+                </div>
+                <div class="site-body">
+                    <p><strong>Autor:</strong> ${site.author}</p>
+                    <p><strong>Status:</strong> ${site.published ? 'Publicado' : 'Rascunho'}</p>
+                </div>
+                <div class="site-footer">
+                    <button onclick="siteManager.viewSite(${index})" class="btn btn-sm btn-primary">
+                        <i class="fas fa-eye"></i> Ver
+                    </button>
+                    <button onclick="siteManager.editSite(${index})" class="btn btn-sm btn-warning">
+                        <i class="fas fa-edit"></i> Editar
+                    </button>
+                    <button onclick="siteManager.deleteSite(${index})" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash"></i> Excluir
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Operações CRUD Locais
+    saveSite() {
+        const title = document.getElementById('siteTitle').value;
+        const author = document.getElementById('siteAuthor').value;
+        const category = document.getElementById('siteCategory').value;
+        const content = document.getElementById('siteContent').value;
+        
+        if (!title || !content) {
+            this.showNotification('Preencha título e conteúdo!', 'error');
+            return;
+        }
+        
+        const site = {
+            id: Date.now(),
+            title,
+            author,
+            category,
+            content,
+            published: false,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        
+        this.sites.push(site);
+        localStorage.setItem('sites', JSON.stringify(this.sites));
+        
+        this.showNotification('Site salvo localmente com sucesso!', 'success');
+        this.updateStats();
+        this.loadSites();
+    }
+
+    viewSite(index) {
+        const site = this.sites[index];
+        const modal = document.getElementById('siteModal');
+        const title = document.getElementById('modalTitle');
+        const content = document.getElementById('modalContent');
+        
+        title.textContent = site.title;
+        content.innerHTML = `
+            <div class="site-details">
+                <p><strong>Autor:</strong> ${site.author}</p>
+                <p><strong>Categoria:</strong> ${site.category}</p>
+                <p><strong>Criado em:</strong> ${new Date(site.createdAt).toLocaleString()}</p>
+                <hr>
+                <h4>Conteúdo:</h4>
+                <div class="site-content-preview">
+                    <iframe srcdoc="${site.content}" style="width:100%; height:300px; border:none;"></iframe>
+                </div>
+            </div>
+        `;
+        
+        modal.style.display = 'block';
+    }
+
+    editSite(index) {
+        const site = this.sites[index];
+        
+        // Preencher formulário com dados do site
+        document.getElementById('siteTitle').value = site.title;
+        document.getElementById('siteAuthor').value = site.author;
+        document.getElementById('siteCategory').value = site.category;
+        document.getElementById('siteContent').value = site.content;
+        
+        // Ir para seção de criação
+        document.querySelector('a[href="#criar"]').click();
+        
+        this.showNotification(`Editando: ${site.title}`, 'info');
+    }
+
+    deleteSite(index) {
+        if (confirm('Tem certeza que deseja excluir este site?')) {
+            this.sites.splice(index, 1);
+            localStorage.setItem('sites', JSON.stringify(this.sites));
+            this.showNotification('Site excluído com sucesso!', 'success');
+            this.updateStats();
+            this.loadSites();
+        }
+    }
+
+    previewSite() {
+        const content = document.getElementById('siteContent').value;
+        const iframe = document.getElementById('sitePreview');
+        
+        iframe.srcdoc = content || '<h1>Digite algum conteúdo para visualizar</h1>';
+    }
+
+    publishSite() {
+        const title = document.getElementById('siteTitle').value;
+        const content = document.getElementById('siteContent').value;
+        
+        if (!title || !content) {
+            this.showNotification('Preencha título e conteúdo!', 'error');
+            return;
+        }
+        
+        // Criar arquivo HTML
+        const html = `
+            <!DOCTYPE html>
+            <html lang="pt-BR">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${title}</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        max-width: 800px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                    }
+                    .container {
+                        background: white;
+                        color: #333;
+                        padding: 2rem;
+                        border-radius: 15px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    }
+                    .header {
+                        text-align: center;
+                        margin-bottom: 2rem;
+                        padding-bottom: 1rem;
+                        border-bottom: 2px solid #667eea;
+                    }
+                    .footer {
+                        text-align: center;
+                        margin-top: 2rem;
+                        padding-top: 1rem;
+                        border-top: 1px solid #ddd;
+                        color: #666;
+                        font-size: 0.9rem;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h1>${title}</h1>
+                        <p>Site publicado pela Plataforma Integrada</p>
+                    </div>
+                    <div class="content">
+                        ${content}
+                    </div>
+                    <div class="footer">
+                        <p>Publicado em: ${new Date().toLocaleDateString()}</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `;
+        
+        // Criar e baixar arquivo
+        const blob = new Blob([html], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${title.toLowerCase().replace(/\s+/g, '-')}.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        this.showNotification(`Site "${title}" publicado e baixado!`, 'success');
+    }
+
+    // Integração com Java Backend
+    async testJavaConnection() {
+        try {
+            const response = await fetch(`${this.javaServerUrl}/api/health`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            if (response.ok) {
+                this.isJavaServerRunning = true;
+                this.showNotification('Conexão com Java estabelecida!', 'success');
+                this.addLog('✅ Servidor Java conectado com sucesso');
+            } else {
+                this.isJavaServerRunning = false;
+                this.addLog('⚠️ Servidor Java não respondeu');
+            }
+        } catch (error) {
+            this.isJavaServerRunning = false;
+            this.addLog('❌ Erro ao conectar com Java: ' + error.message);
+        } finally {
+            this.updateStats();
+        }
+    }
+
+    async startJavaServer() {
+        this.addLog('🚀 Iniciando servidor Java...');
+        
+        try {
+            // Em um sistema real, isso chamaria um processo Java
+            // Aqui simulamos a inicialização
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            this.isJavaServerRunning = true;
+            this.updateStats();
+            this.showNotification('Servidor Java iniciado!', 'success');
+            this.addLog('✅ Servidor Java iniciado na porta 8080');
+            
+            // Mostrar resposta da API
+            document.getElementById('responseData').textContent = JSON.stringify({
+                status: 'success',
+                message: 'Servidor Java iniciado',
+                port: 8080,
+                timestamp: new Date().toISOString()
+            }, null, 2);
+            
+        } catch (error) {
+            this.addLog('❌ Falha ao iniciar servidor Java: ' + error.message);
+            this.showNotification('Erro ao iniciar servidor!', 'error');
+        }
+    }
+
+    async stopJavaServer() {
+        this.addLog('🛑 Parando servidor Java...');
+        
+        try {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            this.isJavaServerRunning = false;
+            this.updateStats();
+            this.showNotification('Servidor Java parado!', 'info');
+            this.addLog('✅ Servidor Java parado');
+        } catch (error) {
+            this.addLog('❌ Erro ao parar servidor: ' + error.message);
+        }
+    }
+
+    async sendToJava() {
+        const title = document.getElementById('siteTitle').value;
+        const author = document.getElementById('siteAuthor').value;
+        const category = document.getElementById('siteCategory').value;
+        const content = document.getElementById('siteContent').value;
+        
+        if (!title || !content) {
+            this.showNotification('Preencha título e conteúdo!', 'error');
+            return;
+        }
+        
+        const siteData = {
+            title,
+            author,
+            category,
+            content,
+            published: false,
+            createdAt: new Date().toISOString()
+        };
+        
+        this.addLog('📤 Enviando site para Java...');
+        
+        try {
+            // Simulação de envio para API Java
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            this.addLog(`✅ Site "${title}" enviado para Java`);
+            this.showNotification('Site salvo no backend Java!', 'success');
+            
+            // Mostrar resposta simulada
+            document.getElementById('responseData').textContent = JSON.stringify({
+                status: 'success',
+                message: 'Site salvo no backend Java',
+                data: {
+                    id: Date.now(),
+                    ...siteData
+                },
+                timestamp: new Date().toISOString()
+            }, null, 2);
+            
+        } catch (error) {
+            this.addLog('❌ Erro ao enviar para Java: ' + error.message);
+            this.showNotification('Erro ao conectar com Java!', 'error');
+        }
+    }
+
+    async listSitesFromJava() {
+        this.addLog('📋 Buscando sites do Java...');
+        
+        try {
+            // Simulação de resposta da API
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            const mockData = {
+                sites: [
+                    {
+                        id: 1,
+                        title: 'Site de Exemplo do Java',
+                        author: 'Sistema Java',
+                        category: 'demo',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        title: 'Blog Tecnológico',
+                        author: 'Dev Java',
+                        category: 'blog',
+                        createdAt: new Date().toISOString()
+                    }
+                ],
+                total: 2,
+                timestamp: new Date().toISOString()
+            };
+            
+            this.addLog(`✅ Encontrados ${mockData.sites.length} sites no Java`);
+            
+            // Mostrar resposta
+            const responseData = document.getElementById('responseData');
+            responseData.textContent = JSON.stringify(mockData, null, 2);
+            
+            // Atualizar interface com sites do Java
+            this.displayJavaSites(mockData.sites);
+            
+        } catch (error) {
+            this.addLog('❌ Erro ao buscar sites do Java: ' + error.message);
+        }
+    }
+
+    displayJavaSites(sites) {
+        const container = document.getElementById('sitesContainer');
+        if (!sites || sites.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-server fa-3x"></i>
+                    <p>Nenhum site no servidor Java</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = sites.map(site => `
+            <div class="site-card">
+                <div class="site-header" style="background: #27ae60;">
+                    <h3>${site.title}</h3>
+                    <small>${site.category} • Servidor Java</small>
+                </div>
+                <div class="site-body">
+                    <p><strong>Autor:</strong> ${site.author}</p>
+                    <p><strong>Fonte:</strong> Backend Java</p>
+                </div>
+                <div class="site-footer">
+                    <button class="btn btn-sm btn-success">
+                        <i class="fas fa-download"></i> Importar
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    testJavaAPI() {
+        this.addLog('🧪 Testando API Java...');
+        
+        // Simulação de teste de API
+        setTimeout(() => {
+            this.addLog('✅ Teste de API completado');
+            
+            document.getElementById('responseData').textContent = JSON.stringify({
+                status: 'success',
+                endpoints: [
+                    { method: 'GET', path: '/api/sites', description: 'Listar sites' },
+                    { method: 'POST', path: '/api/sites', description: 'Criar site' },
+                    { method: 'GET', path: '/api/health', description: 'Status do servidor' },
+                    { method: 'GET', path: '/api/stats', description: 'Estatísticas' }
+                ],
+                serverInfo: {
+                    javaVersion: '17',
+                    framework: 'Embedded HTTP Server',
+                    uptime: '5 minutos',
+                    memory: '128MB usado'
+                }
+            }, null, 2);
+        }, 1000);
+    }
+
+    clearJavaData() {
+        if (confirm('Limpar todos os dados do backend Java?')) {
+            this.addLog('🗑️ Limpando dados do Java...');
+            setTimeout(() => {
+                this.addLog('✅ Dados do Java limpos');
+                document.getElementById('responseData').textContent = 'Dados limpos com sucesso';
+            }, 1000);
+        }
+    }
+
+    // Utilitários
+    addLog(message) {
+        const console = document.getElementById('javaConsole');
+        const entry = document.createElement('div');
+        entry.className = 'log-entry';
+        entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        console.appendChild(entry);
+        console.scrollTop = console.scrollHeight;
+    }
+
+    clearConsole() {
+        document.getElementById('javaConsole').innerHTML = `
+            <div class="log-entry">Console limpo</div>
+            <div class="log-entry">Pronto para novas operações</div>
+        `;
+    }
+
+    showNotification(message, type = 'info') {
+        // Criar elemento de notificação
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 
+                               type === 'error' ? 'exclamation-circle' : 
+                               'info-circle'}"></i>
+            <span>${message}</span>
+        `;
+        
+        // Estilos da notificação
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: ${type === 'success' ? '#27ae60' : 
+                         type === 'error' ? '#e74c3c' : '#3498db'};
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease-out;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Remover após 3 segundos
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease-in';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+        
+        // Adicionar animação de saída
+        if (!document.querySelector('#notification-styles')) {
+            const style = document.createElement('style');
+            style.id = 'notification-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    closeModal() {
+        document.getElementById('siteModal').style.display = 'none';
+    }
+}
+
+// Instanciar e inicializar o sistema
+const siteManager = new SiteManager();
+
+// Expor funções para o escopo global
+window.siteManager = siteManager;
+window.startJavaServer = () => siteManager.startJavaServer();
+window.stopJavaServer = () => siteManager.stopJavaServer();
+window.testJavaAPI = () => siteManager.testJavaAPI();
+window.listSitesFromJava = () => siteManager.listSitesFromJava();
+window.clearJavaData = () => siteManager.clearJavaData();
+window.previewSite = () => siteManager.previewSite();
+window.saveSite = () => siteManager.saveSite();
+window.sendToJava = () => siteManager.sendToJava();
+window.publishSite = () => siteManager.publishSite();
+window.clearConsole = () => siteManager.clearConsole();
+window.closeModal = () => siteManager.closeModal();
+
+// Adicionar evento de teclado para ESC fechar modal
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        siteManager.closeModal();
+    }
+});
+
+// Fechar modal ao clicar fora
+window.onclick = (event) => {
+    const modal = document.getElementById('siteModal');
+    if (event.target === modal) {
+        siteManager.closeModal();
+    }
+};
+
+// Adicionar estilo para notificações
+document.addEventListener('DOMContentLoaded', () => {
+    const style = document.createElement('style');
+    style.textContent = `
+        .notification {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 500;
+        }
+        .notification i {
+            font-size: 1.2rem;
+        }
+    `;
+    document.head.appendChild(style);
+});
+    </script>
 </body>
 </html>
